@@ -83,6 +83,11 @@ export function getStyle(globalPrefixCls: string, theme: Theme) {
     fillColor(theme.infoColor, 'info');
   }
 
+  const themeVariables = theme.variables || {};
+  Object.keys(themeVariables).forEach(cssVariable => {
+    variables[cssVariable] = themeVariables[cssVariable];
+  });
+
   // Convert to css variables
   const cssList = Object.keys(variables).map(
     key => `--${globalPrefixCls}-${key}: ${variables[key]};`,
